@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>スタプラ好き顔9選</title>
+<style>
+:root{--pink:#f5a9c7;--pink2:#fde8f0;--deep:#d96f9b;--text:#4a3d43;--white:#fff}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--text);background:linear-gradient(180deg,#fff 0%,#fff8fb 100%);min-height:100vh}
+button{font:inherit} .wrap{max-width:980px;margin:auto;padding:28px 18px 50px}
+.hero{text-align:center;padding:34px 10px 20px}.spark{color:var(--pink);letter-spacing:5px;font-size:18px}
+h1{font-size:clamp(30px,8vw,56px);margin:10px 0 8px;letter-spacing:.04em;color:#45363d}
+.sub{font-size:14px;color:#8e7780}.card{background:rgba(255,255,255,.9);border:1px solid #f6d6e2;border-radius:28px;box-shadow:0 12px 40px rgba(190,110,145,.12);padding:26px}
+.hidden{display:none}.center{text-align:center}
+.start-btn,.again-btn,.save-btn{border:0;background:linear-gradient(135deg,#f6b5cf,#e98db3);color:white;padding:15px 28px;border-radius:999px;font-weight:700;box-shadow:0 8px 20px rgba(217,111,155,.25);cursor:pointer}
+.note{font-size:12px;color:#9b858d;margin-top:14px;line-height:1.7}
+.progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;color:#a06d82;font-size:13px}
+.bar{height:7px;background:#f9e4ed;border-radius:9px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--pink);width:0;transition:.25s}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.choice{border:1px solid #f1d9e2;background:white;border-radius:22px;padding:10px;cursor:pointer;transition:.18s;box-shadow:0 8px 22px rgba(150,90,120,.08)}
+.choice:hover{transform:translateY(-3px);border-color:#efa8c3}.photo{aspect-ratio:3/4;border-radius:16px;background:linear-gradient(145deg,#fff0f6,#f9d9e7);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}.placeholder{font-size:28px;font-weight:800;color:#d7779f;text-align:center;padding:15px}
+.name{font-weight:800;font-size:18px;margin:12px 4px 3px}.group{font-size:12px;color:#a28791;margin:0 4px 6px}
+.result-title{text-align:center}.result-title h2{font-size:30px;margin:5px 0}.result-title p{color:#9a7e88;font-size:13px}
+.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:26px 0}.rank{position:relative;background:white;border:1px solid #f1d8e3;border-radius:18px;overflow:hidden;padding:0;box-shadow:0 6px 18px rgba(190,110,145,.08)}.rank .rphoto{aspect-ratio:4/5;background:linear-gradient(145deg,#fff0f6,#f9d9e7);display:flex;align-items:center;justify-content:center;overflow:hidden}.rank img{width:100%;height:100%;object-fit:cover}.rank .info{padding:10px 11px 12px;text-align:center}.rnum{position:absolute;top:9px;left:9px;min-width:34px;height:34px;padding:0 8px;border-radius:999px;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;color:#b76588;font-weight:900;font-size:14px;box-shadow:0 2px 8px rgba(80,40,60,.12)}.rank:first-child .rnum{background:#d9a42a;color:white}.rname{font-weight:800;font-size:15px;margin-top:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.small{font-size:11px;color:#9a828b;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:620px){.wrap{padding:14px 12px 36px}.card{padding:18px;border-radius:22px}.pair{gap:9px}.name{font-size:15px}.group{font-size:10px}.results{gap:8px}.rank{border-radius:13px}.rank .info{padding:8px 5px 10px}.rnum{top:6px;left:6px;min-width:29px;height:29px;font-size:12px}.rname{font-size:12px}.small{font-size:9px}.photo{border-radius:13px}}
+.sub-buttons {position:relative;left:50%;transform:translateX(-50%);width:max-content;display: flex;justify-content: center;gap: 12px;margin-top: 18px;}.sub-buttons button {border: none;background: #fff;color: #777;border: 1px solid #f3c8d5;border-radius: 999px;padding: 9px 18px;font-size: 14px;cursor: pointer;}.sub-buttons button:hover {background: #fff5f8;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<div class="spark">♡ ⋆｡°✩</div>
+<h1>スタプラ好き顔9選</h1>
+<div class="sub">あなたの「好き！」を9人に絞ってみよう。</div>
+</section>
+
+<div id="start" class="card center">
+<h2>好きな顔を直感で選んでね ♡</h2>
+<p>2人のアイドルを見比べて、好きな方をタップ！<br>何度かの対戦から、あなたの好き顔TOP9を作るよ。</p>
+<button class="start-btn" onclick="startGame()">はじめる ♡</button>
+</div>
+
+<div id="game" class="card hidden">
+<div class="progress"><span id="roundText">ROUND 1</span><span id="matchText">0 / 0</span></div>
+<div class="bar"><i id="bar"></i></div>
+<div class="pair">
+<button class="choice" id="left" onclick="choose(0)"></button>
+<button class="choice" id="right" onclick="choose(1)"></button>
+<div class="sub-buttons">
+  <button onclick="goBack()" id="backButton">
+    ↩️ 一つ戻る
+  </button>
+
+  <button onclick="skipMatch()">
+    🤍 選べない
+  </button>
+</div>
+</div>
+</div>
+
+<div id="result" class="card hidden">
+<div id="capture-target" style="padding: 10px; background: white; border-radius: 20px;">
+  <div class="result-title"><div class="spark">✦ ♡ ✦</div><h2>あなたの好き顔 TOP9</h2><p>選んだ対戦結果からランキングを作ったよ。</p></div>
+  <div id="results" class="results"></div>
+</div>
+<div class="center action-btns">
+  <button class="save-btn" onclick="saveResultImage()">画像として保存する ♡</button>
+  <button class="again-btn" onclick="startGame()">もう一回あそぶ ♡</button>
+</div>
+</div>
+<div id="saveModal" class="modal hidden" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <p>画像を長押しして保存してね ♡</p>
+    <img id="modalImg" src="" alt="結果画像">
+    <button class="close-btn" onclick="closeModal()">閉じる</button>
+  </div>
+</div>
+</div>
+
+<script>
+const members = [{"group": "ももいろクローバーZ", "name": "百田夏菜子", "image": "images/momoclo_kanako.jpg"}, {"group": "ももいろクローバーZ", "name": "玉井詩織", "image": "images/momoclo_shiori.jpg"}, {"group": "ももいろクローバーZ", "name": "佐々木彩夏", "image": "images/momoclo_ayaka.jpg"}, {"group": "ももいろクローバーZ", "name": "高城れに", "image": "images/momoclo_reni.jpg"}, {"group": "私立恵比寿中学", "name": "真山りか", "image": "images/ebichu_rika.jpeg"}, {"group": "私立恵比寿中学", "name": "安本彩花", "image": "images/ebichu_ayaka.jpeg"}, {"group": "私立恵比寿中学", "name": "中山莉子", "image": "images/ebichu_riko.jpeg"}, {"group": "私立恵比寿中学", "name": "桜木心菜", "image": "images/ebichu_cocona.jpeg"}, {"group": "私立恵比寿中学", "name": "小久保柚乃", "image": "images/ebichu_yuno.jpeg"}, {"group": "私立恵比寿中学", "name": "風見和香", "image": "images/ebichu_nonoka.jpeg"}, {"group": "私立恵比寿中学", "name": "桜井えま", "image": "images/ebichu_emma.jpeg"}, {"group": "私立恵比寿中学", "name": "仲村悠菜", "image": "images/ebichu_yuna.jpeg"}, {"group": "超ときめき♡宣伝部", "name": "辻野かなみ", "image": "images/tokisen_kanami.jpeg"}, {"group": "超ときめき♡宣伝部", "name": "小泉遥香", "image": "images/tokisen_haruka.jpeg"}, {"group": "超ときめき♡宣伝部", "name": "坂井仁香", "image": "images/tokisen_hitoka.jpeg"}, {"group": "超ときめき♡宣伝部", "name": "吉川ひより", "image": "images/tokisen_hiyori.jpeg"}, {"group": "超ときめき♡宣伝部", "name": "菅田愛貴", "image": "images/tokisen_aki.jpeg"}, {"group": "ばってん少女隊", "name": "希山愛", "image": "images/batten_ai.jpg"}, {"group": "ばってん少女隊", "name": "上田理子", "image": "images/batten_riko.jpg"}, {"group": "ばってん少女隊", "name": "春乃きいな", "image": "images/batten_kiina.jpg"}, {"group": "ばってん少女隊", "name": "蒼井りるあ", "image": "images/batten_rirua.jpg"}, {"group": "ばってん少女隊", "name": "柳美舞", "image": "images/batten_miyu.jpg"}, {"group": "ばってん少女隊", "name": "逢里みう", "image": "images/batten_miu.jpg"}, {"group": "ばってん少女隊", "name": "日南心那", "image": "images/batten_kokona.jpg"}, {"group": "いぎなり東北産", "name": "橘花怜", "image": "images/tohoku_karen.jpeg"}, {"group": "いぎなり東北産", "name": "律月ひかる", "image": "images/tohoku_hikaru.jpeg"}, {"group": "いぎなり東北産", "name": "北美梨寧", "image": "images/tohoku_rine.jpeg"}, {"group": "いぎなり東北産", "name": "安杜羽加", "image": "images/tohoku_waka.jpeg"}, {"group": "いぎなり東北産", "name": "吉瀬真珠", "image": "images/tohoku_shinju.jpeg"}, {"group": "いぎなり東北産", "name": "桜ひなの", "image": "images/tohoku_hinano.jpeg"}, {"group": "いぎなり東北産", "name": "藤谷美海", "image": "images/tohoku_miu.jpeg"}, {"group": "いぎなり東北産", "name": "伊達花彩", "image": "images/tohoku_kahya.jpeg"}, {"group": "いぎなり東北産", "name": "葉月結菜", "image": "images/tohoku_yuna.jpeg"}, {"group": "RE-GE", "name": "白石るり", "image": "images/rege_ruri.jpg"}, {"group": "RE-GE", "name": "禾本珠彩", "image": "images/rege_jui.jpg"}, {"group": "RE-GE", "name": "花井心桜", "image": "images/rege_hanai_kokoro.jpg"}, {"group": "RE-GE", "name": "高月凛々", "image": "images/rege_riri.jpg"}, {"group": "RE-GE", "name": "田崎杏夏", "image": "images/rege_anna.jpg"}, {"group": "RE-GE", "name": "森瀬こころ", "image": "images/rege_morise_kokoro.jpg"}, {"group": "RE-GE", "name": "瑞川蒼依", "image": "images/rege_aoi.jpg"}, {"group": "RE-GE", "name": "桧山ゆうみ", "image": "images/rege_yuumi.jpg"}, {"group": "RE-GE", "name": "那須ほほみ", "image": "images/rege_hohomi.jpg"}];
+
+let ratings={}, matches=[], current=0, total=0;
+members.forEach((m,i)=>ratings[i]=1000);
+
+// Elo-like pairwise ranking. Each round samples pairs so the experience stays short on mobile.
+function startGame(){
+  document.getElementById('start').classList.add('hidden');
+  document.getElementById('result').classList.add('hidden');
+  document.getElementById('game').classList.remove('hidden');
+    history.length = 0;
+  ratings={}; members.forEach((m,i)=>ratings[i]=1000);
+  matches=[]; current=0;
+  // Randomized round-robin subset: 45 comparisons gives a useful ranking for 43 candidates.
+  let pool=[...Array(members.length).keys()].sort(()=>Math.random()-.5);
+  for(let i=0;i<pool.length;i++){
+    for(let j=i+1;j<pool.length;j++) matches.push([pool[i],pool[j]]);
+  }
+  matches.sort(()=>Math.random()-.5);
+  total=Math.min(55,matches.length);
+  matches=matches.slice(0,total);
+  renderMatch();
+}
+function imgOrPlaceholder(m){
+  return m.image ? `<img src="${m.image}" alt="">` : `<div class="placeholder">♡<br>${m.name}</div>`;
+}
+function cardHTML(i){
+  const m=members[i];
+  return `<div class="photo">${imgOrPlaceholder(m)}</div><div class="name">${m.name}</div><div class="group">${m.group}</div>`;
+}
+function renderMatch(){
+  if(current>=total){finish();return}
+  const [a,b]=matches[current];
+  document.getElementById('left').innerHTML=cardHTML(a);
+  document.getElementById('right').innerHTML=cardHTML(b);
+  document.getElementById('roundText').textContent=`ROUND ${current+1}`;
+  document.getElementById('matchText').textContent=`${current+1} / ${total}`;
+  document.getElementById('bar').style.width=`${(current/total)*100}%`;
+}
+const history = [];
+
+function choose(side){
+  const [a,b] = matches[current];
+  const winner = side === 0 ? a : b;
+  const loser = side === 0 ? b : a;
+  const ra = ratings[winner];
+  const rb = ratings[loser];
+  const expected = 1 / (1 + Math.pow(10, (rb - ra) / 400));
+  const k = 32;
+   history.push({
+    current: current,
+    ratings: {...ratings}
+  });
+  ratings[winner] = ra + k * (1 - expected);
+  ratings[loser] = rb + k * (0 - (1 - expected));
+  current++;
+  renderMatch();
+}
+function skipMatch(){
+  history.push({
+    current: current,
+    ratings: {...ratings}
+  });
+  current++;
+  renderMatch();
+}
+function goBack(){
+  if(history.length === 0) return;
+  const previous = history.pop();
+  current = previous.current;
+  Object.keys(ratings).forEach(key => {
+    delete ratings[key];
+  });
+  Object.assign(ratings, previous.ratings);
+    renderMatch();
+}
+function finish(){
+  document.getElementById('game').classList.add('hidden');
+  document.getElementById('result').classList.remove('hidden');
+
+  const top=[...Array(members.length).keys()]
+    .sort((a,b)=>ratings[b]-ratings[a])
+    .slice(0,9);
+
+  document.getElementById('results').innerHTML=top.map((i,n)=>{
+    const m=members[i];
+    return `<div class="rank">
+      <div class="rnum">${n===0?'👑 ':''}${n+1}</div>
+      <div class="rphoto">${imgOrPlaceholder(m)}</div>
+      <div class="info">
+        <div class="rname">${m.name}</div>
+        <div class="small">${m.group}</div>
+      </div>
+    </div>`;
+  }).join('');
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxAuBGYmJrtFTvSRke_p9FVPVSy52_k-YFQ9WqLUhd-ZS105XBrqBnrJdUw6DbVDPWkZw/exec';
+  const top9 = top.map(i => members[i].name);
+  fetch(GAS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify({
+      top9: top9
+    })
+  });
+}
+function saveResultImage() {
+  const target = document.getElementById('capture-target');
+  html2canvas(target, {
+    useCORS: true,
+    scale: 2, 
+    backgroundColor: '#ffffff'
+  }).then(canvas => {
+    const imageURI = canvas.toDataURL('image/png');
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      document.getElementById('modalImg').src = imageURI;
+      document.getElementById('saveModal').classList.remove('hidden');
+    } else {
+      const a = document.createElement('a');
+      a.href = imageURI;
+      a.download = 'sukigao_top9.png';
+      a.click();
+    }
+  }).catch(err => {
+    alert('画像の保存に失敗しました');
+    console.error(err);
+  });
+}
+
+function closeModal() {
+  document.getElementById('saveModal').classList.add('hidden');
+}
+</script>
+</body>
+</html>
